@@ -1,7 +1,42 @@
 'use strict';
 
-<<<<<<< Updated upstream
-=======
+let isNumber = function(n){
+    return !isNaN(parseFloat(n)) && isFinite(n);
+}
+
+//--------------------------------------------------------УРОК 05-------------------------------------------------------
+let num;
+const arr = [];
+
+let numberInput = function(){
+    do {
+        num = prompt('Введите число:', 45468);
+    }
+    while (!isNumber(num));
+    return num;
+};
+
+for (let i = 0; i < 7; i++) {
+    arr[i] = numberInput();
+    if (arr[i][0] === '2' || arr[i][0] === '4'){
+        console.log('Искомое число: ', arr[i]);
+    }
+}
+
+console.log('arr: ', arr);
+
+next:
+for(let i = 2; i < 100; i++){
+    for(let j = 2; j < i; j++){
+        if (i % j === 0) {
+            continue next;
+        }
+    }
+    console.log(i, 'делится на 1 и', i);
+}
+
+
+
 //--------------------------------------------------------УРОК 04-------------------------------------------------------
 /*
 let yourString = prompt('Введите свой текст:','    Преимущество концепции «функция-как-объект» заключается в том, что код можно передавать в другую функцию точно так же, как обычную переменную или объект   ');
@@ -21,8 +56,7 @@ console.log(typeof(yourString));
 */
 
 //--------------------------------------------------------УРОК 03-------------------------------------------------------
-
->>>>>>> Stashed changes
+/*
 let lang = prompt('Введите желаемый язык в фотмате "ru" или "en"','ru'),
 daysIf,
 daysSwitch,
@@ -70,13 +104,9 @@ console.log('Ты: ', result);
 
 console.log('Дни недели "if":', daysIf);
 console.log('Дни недели "Switch": ', daysSwitch);
-<<<<<<< Updated upstream
-console.log('Дни недели без использования "if" или "switch"', weekDays.find(row => row[0] === lang)[1]);
-=======
 console.log('Дни недели "Object": ', weekObject[lang]);
 console.log('Дни недели без использования "if" или "switch"', daysElase);
->>>>>>> Stashed changes
-
+*/
 
 //--------------------------------------------------------УРОК 02-------------------------------------------------------
 /*let num = 266219, 
