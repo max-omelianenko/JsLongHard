@@ -1,6 +1,80 @@
 'use strict';
 
 let isNumber = function(n){
+    return !isNaN(parseFloat(n)) && isFinite(n) && n > 0 && n < 100;
+};
+
+let numberInput = function(){
+	let num = prompt('Введите ваш ответ от 1 до 100');
+	while (!isNumber(num)) {
+			num = prompt('Ошибка, введите ваш ответ от 1 до 100');
+	}
+	return num;
+};
+
+/*
+let numberInput = function(){
+	let num;
+	do {
+			num = prompt('Введите ваш ответ от 1 до 100');
+	}
+	while (!isNumber(num));
+	return num;
+};*/
+
+function randomInteger(min, max) {
+	let rand = min + Math.random() * (max + 1 - min);
+	return Math.floor(rand);
+}
+
+function game(){
+    let oneMoreGame = function(){
+        let oneMore = confirm('Eще разок?');
+        if (oneMore === true){
+            game();
+        } else if (oneMore === false){
+            alert('Игра окончена!');
+        }
+    };
+	let x = randomInteger(0, 100);
+    let counterN = 10;
+	function answerComparison(){
+		let answer = +numberInput();
+		let confirmNext = function(){
+			let a = confirm('Продолжить?');
+			if (a === true){
+				answerComparison();
+			} else if (a === false){
+				alert('Слабак!=)');
+			}
+		};
+		console.log('x: ', x);
+		console.log('answer: ', answer);
+
+        counterN--;
+
+        console.log('counterN: ', counterN);
+        if (counterN === 0){
+            alert('Вы проиграли. Использованы все попытки!');
+            oneMoreGame();
+        } else if(answer > x){
+			alert('Загаданное число меньше, осталось попыток ' + counterN);
+			confirmNext();
+		} else if (answer < x){
+			alert('Загаданное число больше, осталось попыток ' + counterN);
+			confirmNext();
+        } else if (answer === x){
+			alert('Победа!!!');
+			oneMoreGame();
+		}
+	}
+	answerComparison();
+}
+
+game();
+
+/*
+let isNumber = function(n){
     return !isNaN(parseFloat(n)) && isFinite(n);
 }
 
@@ -34,7 +108,7 @@ for(let i = 2; i < 100; i++){
     }
     console.log(i, 'делится на 1 и', i);
 }
-
+*/
 
 
 //--------------------------------------------------------УРОК 04-------------------------------------------------------
