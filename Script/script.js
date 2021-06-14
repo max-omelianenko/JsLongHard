@@ -1,5 +1,37 @@
 'use strict';
 
+//--------------------------------------------------------УРОК 07-------------------------------------------------------
+
+const weekDays = ['Воскресенье', 'Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота'];
+
+function createDayItem(day, isItalic, isBold) {
+    const ul = document.getElementById('week');
+    let li = document.createElement('li');
+    li.textContent = day;
+    if (isItalic === true){
+        li.style.fontStyle = 'italic';
+    }
+    if (isBold === true){
+        li.style.fontWeight = 'bold';
+    }
+    ul.appendChild(li);
+}
+
+for (let i = 0; i < weekDays.length; i++){
+    let isItalic = false;
+    let isBold = false;
+    let date = new Date();
+    if (i === 0 || i === 6) {
+        isItalic = true;
+    }
+    if (i === date.getDay()){
+        isBold = true;
+    }
+    createDayItem(weekDays[i], isItalic, isBold);
+}
+
+//--------------------------------------------------------УРОК 06-------------------------------------------------------
+/*
 let isNumber = function(n){
     return !isNaN(parseFloat(n)) && isFinite(n) && n > 0 && n < 100;
 };
@@ -12,7 +44,7 @@ let numberInput = function(){
 	return num;
 };
 
-/*
+
 let numberInput = function(){
 	let num;
 	do {
@@ -20,7 +52,7 @@ let numberInput = function(){
 	}
 	while (!isNumber(num));
 	return num;
-};*/
+};
 
 function randomInteger(min, max) {
 	let rand = min + Math.random() * (max + 1 - min);
@@ -70,8 +102,8 @@ function game(){
 	}
 	answerComparison();
 }
-
 game();
+*/
 
 /*
 let isNumber = function(n){
