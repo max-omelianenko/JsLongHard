@@ -1,7 +1,79 @@
 'use strict';
 
-//--------------------------------------------------------УРОК 07-------------------------------------------------------
+const date = document.querySelector('.date'),
+    dateTime = document.querySelector('.date_time');
 
+let currentTime;
+const weekDays = ['Воскресенье', 'Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота'],
+    month = [
+        ' января ',' февраля ',' марта ',' апреля ',' мая ',' июня ',
+        ' июля ',' августа ',' сентября ',' октября ',' ноября ',' декабря '
+    ],
+    hour = [' час ', ' часа ', ' часов '],
+    minutes = [' минута ', ' минуты ', ' минут '],
+    seconds = [' секунда!', ' секунды!', ' секунд!'],
+    getCurrentTime = function(){
+        currentTime = new Date();
+        return currentTime;
+    },
+    dateOutput = {
+    formatOne: function(now){
+        const compare = function(time){
+            let timeWord;
+            if (time > 10 && time < 20){
+                timeWord = 2;  
+            }
+            else {
+                time = time % 10;
+            }
+
+            if (time === 1){
+                timeWord = 0;
+            }
+            else if(time >= 2 && time <= 4){
+                timeWord = 1;
+            }
+            else if(time >= 5 || time === 0){
+                timeWord = 2;
+            }
+            return timeWord;
+        };
+        date.textContent = 'Сегодня: ' + weekDays[now.getDay()] + ', ' + now.getDate() + month[now.getMonth()] +
+        now.getFullYear() + ' года, ' + now.getHours() + hour[compare(now.getHours())] + now.getMinutes() +
+        minutes[compare(now.getMinutes())] + now.getSeconds() + seconds[compare(now.getSeconds())];
+    },
+    formatTwo: function(now){
+        const compare = function(time){
+            let timeOut;
+            if (time < 10){
+                time = time.toString(); 
+                timeOut = '0' + time;
+            }
+            if (time >= 10){
+                timeOut = time.toString(); 
+            }
+            return timeOut;
+        };
+        dateTime.textContent = 'Сегодня: ' + weekDays[now.getDay()] + ' ' + compare(now.getDate()) + '.' + 
+        compare(now.getMonth()) + '.' + now.getFullYear() + ' - ' + compare(now.getHours()) + ':' +
+        compare(now.getMinutes()) + ':' + compare(now.getSeconds());
+    }
+};
+
+setInterval(
+    () => dateOutput.formatOne(getCurrentTime()),
+    1000
+);
+setInterval(
+    () => dateOutput.formatTwo(getCurrentTime()),
+    1000
+);
+
+//dateOutput.formatOne(getCurrentTime());
+//dateOutput.formatTwo(getCurrentTime());
+
+//--------------------------------------------------------УРОК 07-------------------------------------------------------
+/*
 const weekDays = ['Воскресенье', 'Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота'];
 
 function createDayItem(day, isItalic, isBold) {
@@ -29,7 +101,7 @@ for (let i = 0; i < weekDays.length; i++){
     }
     createDayItem(weekDays[i], isItalic, isBold);
 }
-
+*/
 //--------------------------------------------------------УРОК 06-------------------------------------------------------
 /*
 let isNumber = function(n){
