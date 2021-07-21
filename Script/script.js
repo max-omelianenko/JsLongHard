@@ -1,5 +1,74 @@
 'use strict';
+//--------------------------------------------------------УРОК 12-------------------------------------------------------
 
+const todoControl = document.querySelector('.todo-control'),
+    headerInput = document.querySelector('.header-input'),
+    todoList = document.querySelector('.todo-list'),
+    todoCompleted = document.querySelector('.todo-completed');
+
+const todoData = localStorage.getItem('data') ? JSON.parse(localStorage.getItem('data')) : [];
+
+const render = function(){
+    todoList.textContent = '';
+    todoCompleted.textContent = '';
+    headerInput.value = '';
+
+    todoData.forEach(function(item, index){
+        const li = document.createElement('li');
+        li.classList.add('todo-item');
+
+        li.innerHTML = '<span class="text-todo">' + item.value + '</span>' +
+            '<div class="todo-buttons">' +
+                '<button class="todo-remove"></button>' + 
+                '<button class="todo-complete"></button>' + 
+            '</div>';
+        if (item.completed){
+            todoCompleted.append(li);
+        } else {
+            todoList.append(li);
+        }
+
+        const todoComplete = li.querySelector('.todo-complete');
+        todoComplete.addEventListener('click', function(){
+            item.completed =!item.completed;
+            localStorage.setItem('data', JSON.stringify(todoData));
+            render();
+        });
+
+        const todoRemove = li.querySelector('.todo-remove');
+
+        todoRemove.addEventListener('click', function(){
+            li.remove();
+            todoData.splice(index, 1);
+            localStorage.setItem('data', JSON.stringify(todoData));
+            render();
+        }); 
+    });
+
+
+};
+
+todoControl.addEventListener('submit', function(event){
+    event.preventDefault();
+    const newTodo = {
+        value: headerInput.value,
+        completed: false
+    };
+    if(headerInput.value !== ''){
+        todoData.push(newTodo);
+    } else {
+        alert('Пустые дела не добавляются! =Р ');
+    }
+    render();
+
+    localStorage.setItem('data', JSON.stringify(todoData));
+});
+
+render();
+
+
+//--------------------------------------------------------УРОК 09-------------------------------------------------------
+/*
 const date = document.querySelector('.date'),
     dateTime = document.querySelector('.date_time');
 
@@ -71,6 +140,8 @@ setInterval(
 
 //dateOutput.formatOne(getCurrentTime());
 //dateOutput.formatTwo(getCurrentTime());
+*/
+
 
 //--------------------------------------------------------УРОК 07-------------------------------------------------------
 /*
