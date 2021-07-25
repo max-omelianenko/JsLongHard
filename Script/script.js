@@ -1,14 +1,48 @@
 'use strict';
+//--------------------------------------------------------УРОК 14 + ----------------------------------------------------
+
 //--------------------------------------------------------УРОК 14-------------------------------------------------------
+function DomElement(selector, height, width, bg, fontSize){
+    this.selector = selector;
+    this.height = height;
+    this.width = width;
+    this.bg = bg;
+    this.fontSize = fontSize;
+}
+
+DomElement.prototype.create = function () {
+  
+    if (this.selector.match(/^\./)){
+        let newElement = document.createElement('div');
+        newElement.classList.add(this.selector.substring(1));
+        newElement.textContent = prompt('Введите текст', 'Здесь могла быть Ваша реклама');
+        document.body.append(newElement);
+    } else if (this.selector.match(/^\#/)){
+        let newElement = document.createElement('p');
+        newElement.id = this.selector.substring(1);
+        newElement.textContent = prompt('Введите текст', 'Здесь могла быть Ваша реклама');
+        document.body.append(newElement);
+    }
+    let element = document.querySelector(this.selector);
+    element.style.cssText = `
+        height: ${this.height};
+        width: ${this.width};
+        background: ${this.bg};
+        font-size: ${this.fontSize};
+    `;
+};
+
+const NewDomElement = new DomElement('#newTestElement', '100px', '200px', '#FFD540', '16px');
+NewDomElement.create();
+
+const NewDomElement2 = new DomElement('.newTestElement', '100px', '300px', '#3F92D2', '20px');
+NewDomElement2.create();
+
+//--------------------------------------------------------УРОК 13 + ----------------------------------------------------
 
 
 
-
-//--------------------------------------------------------УРОК 13-------------------------------------------------------
-
-
-
-//--------------------------------------------------------УРОК 12-------------------------------------------------------
+//--------------------------------------------------------УРОК 12 + ----------------------------------------------------
 /*
 const todoControl = document.querySelector('.todo-control'),
     headerInput = document.querySelector('.header-input'),
