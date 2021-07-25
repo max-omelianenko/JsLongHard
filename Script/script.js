@@ -8,7 +8,7 @@ class First {
 }
 class Second extends First{
     hello(){
-        console.log('Привет я метод родителя!');
+        super.hello();
         this.hello2();
     }
     hello2(){
